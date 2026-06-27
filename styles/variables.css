@@ -1,9 +1,0 @@
-:root {
-  --primary-color: #06171e;
-  --secandary-color: #09212a;
-  --third-color: #124658;
-  --hover-color: #6bc1e1;
-  --content-padding: max(calc(50% - 720px), 120px);
-  --content-padding-medium: max(calc(50% - 720px), 48px);
-  --content-padding-small: max(calc(50% - 720px), 24px);
-}
