@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        <div>
+        <div class="header-brand">
             <img src="./assets/icons/pokeball.png" alt="" />
             <h1>POKEDEX</h1>
         </div>
@@ -27,9 +27,12 @@
     <main data-id="content">
         <section class="pokemon-section" id="pokemon-section" aria-labelledby="pokemonSectionTitle">
             <h2 id="pokemonSectionTitle">All Pokémon</h2>
-           <div class="pokemon-grid" id="pokemonGrid">
-            <!-- Pokémon cards will be rendered here -->
+            <div class="pokemon-grid" id="pokemonGrid">
+                <!-- Pokémon cards will be rendered here -->
             </div>
+            <button class="load-more-button" data-id="load-more-button" type="button">
+                Load more
+            </button>
         </section>
     </main>
     <footer class="main-footer">
