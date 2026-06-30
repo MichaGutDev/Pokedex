@@ -39,23 +39,17 @@
   src: url("../assets/fonts/figtree-v9-latin-800.woff2") format("woff2"); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-/* h1 {
-  font-size: 56px;
-  font-weight: 800;
-  color: #ffffff;
+h1 {
+  font-size: 32px;
+  font-weight: 700;
+  color:white;
 }
 
 h2 {
   font-size: 24px;
   font-weight: bold;
-  color: #ffffff;
 }
 
-dialog {
-  font-size: 16px;
-  font-weight: 500;
-  color: #ffffff;
-}
 
 @media screen and (max-width: 768px) {
   h1 {
@@ -74,4 +68,4 @@ dialog {
   h2 {
     font-size: 18px;
   }
-} */
+}
