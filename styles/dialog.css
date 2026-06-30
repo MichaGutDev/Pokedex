@@ -1,0 +1,170 @@
+.pokemon-dialog[open] {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+
+  border: none;
+  background: transparent;
+}
+
+.pokemon-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.pokemon-dialog-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: min(400px, 100%);
+  min-height: 600px;
+  padding: 32px;
+
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+}
+
+.dialog-close-button {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 125ms ease, background-color 125ms ease;
+}
+
+.dialog-close-button img {
+  width: 32px;
+  height: 32px;
+  
+}
+
+.dialog-close-button:hover {
+  transform: scale(1.08);
+  background-color:#f3f3f3;
+}
+
+.dialog-close-button:focus-visible {
+  outline: 3px solid #ef4444;
+  outline-offset: 3px;
+}
+
+.pokemon-dialog-image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 180px;
+  margin: 24px 0;
+
+  /* border-radius: 24px;
+  background-color: #f3f4f6; */
+}
+
+.pokemon-dialog-image {
+  width: 180px;
+  height: 180px;
+  object-fit: contain;
+}
+
+.pokemon-dialog-tabs {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.pokemon-dialog-tabs button {
+     position: relative;
+
+  border: none;
+  background-color: transparent;
+  padding: 12px 6px;
+
+  color: #666666;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.pokemon-dialog-tabs button:hover {
+  color: #ef4444;
+  /* background-color: #fef2f2; */
+}
+
+.pokemon-dialog-tabs button.active {
+  color: black;
+}
+
+.pokemon-dialog-tabs button.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+
+  height: 3px;
+  border-radius: 999px;
+  background-color: #ef4444;
+}
+
+.pokemon-dialog-tabs button:focus-visible {
+  outline: 3px solid #ef4444;
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.pokemon-dialog-navigation {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pokemon-dialog-navigation button{
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 125ms ease, background-color 125ms ease;
+
+}
+
+.pokemon-dialog-navigation button:hover {
+  transform: scale(1.08);
+  background-color:#f3f3f3;
+}
+
+.pokemon-dialog-navigation button:focus-visible {
+  outline: 3px solid #ef4444;
+  outline-offset: 3px;
+}
+
+
+

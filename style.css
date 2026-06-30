@@ -34,7 +34,7 @@ main {
   align-items: center;
   justify-content: center;
   padding: 20px var(--content-padding);
-  background-color: var(--primary-color);
+  background-color: white;
 }
 
 .main-footer {

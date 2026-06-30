@@ -7,7 +7,7 @@
     <title>Pokedex</title>
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/variables.css" />
-        <link rel="stylesheet" href="./styles/pokemon.css" />
+    <link rel="stylesheet" href="./styles/pokemon.css" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/dialog.css" />
     <script src="./script.js" defer></script>
@@ -56,7 +56,9 @@
                 <div class="pokemon-dialog-types">
                     <!-- type badges later -->
                 </div>
-                <img class="pokemon-dialog-image" data-id="dialog-image" src="" alt="">
+                <div class="pokemon-dialog-image-wrapper">
+                    <img class="pokemon-dialog-image" data-id="dialog-image" src="" alt="">
+                </div>
             </section>
             <nav class="pokemon-dialog-tabs" aria-label="Pokémon detail sections">
                 <button type="button">About</button>
@@ -71,11 +73,11 @@
 
             <div class="pokemon-dialog-navigation">
                 <button data-id="prev-button" type="button" aria-label="Show previous Pokémon">
-                    ‹
+                    <img src="./assets/icons/arrow-left.svg" alt="">
                 </button>
 
                 <button data-id="next-button" type="button" aria-label="Show next Pokémon">
-                    ›
+                    <img src="./assets/icons/arrow-right.svg" alt="">
                 </button>
             </div>
         </div>
