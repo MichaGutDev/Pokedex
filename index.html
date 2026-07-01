@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="./styles/pokemon.css" />
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/dialog.css" />
+    <script src="./scripts/api.js" defer></script>
+    <script src="./scripts/templates.js" defer></script>
+    <script src="./scripts/dialog.js" defer></script>
     <script src="./script.js" defer></script>
 
 </head>
@@ -44,106 +47,7 @@
     </main>
     <dialog class="pokemon-dialog" data-id="dialog" open>
         <!-- TODO: Remove open attribute after dialog styling -->
-        <div class="pokemon-dialog-card" data-id="overlay-pokemon-name">
-            <!-- TODO: Build static dialog prototype for styling -->
-            <!-- CHECK: Dialog must include all required data-id attributes -->
-            <button class="dialog-close-button" data-id="close-dialog-button" type="button" aria-label="Close dialog">
-                <img src="./assets/icons/close-icon.svg" alt="">
-            </button>
-            <section class="pokemon-dialog-hero">
-                <p class="pokemon-dialog-id">#006</p>
-                <h2>Charizard</h2>
-                <div class="pokemon-dialog-types">
-                    <!-- type badges later -->
-                </div>
-                <div class="pokemon-dialog-image-wrapper">
-                    <img class="pokemon-dialog-image" data-id="dialog-image" src="" alt="">
-                </div>
-            </section>
-            <nav class="pokemon-dialog-tabs" aria-label="Pokémon detail sections">
-                <button type="button">About</button>
-                <button type="button">Base Stats</button>
-                <button type="button">Abilities</button>
-                <button type="button">Moves</button>
-            </nav>
-
-            <section class="pokemon-dialog-details">
-                <div class="pokemon-detail-row">
-                    <span>Height</span>
-                    <strong>1.7 m</strong>
-                </div>
-
-                <div class="pokemon-detail-row">
-                    <span>Weight</span>
-                    <strong>90.5 kg</strong>
-                </div>
-
-                <div class="pokemon-detail-row">
-                    <span>Types</span>
-                    <strong>Fire, Flying</strong>
-                </div>
-
-                <div class="pokemon-detail-row">
-                    <span>Abilities</span>
-                    <strong>Blaze</strong>
-                </div>
-                <!-- about and stats later -->
-                <div class="pokemon-stats-list">
-                    <div class="pokemon-stat-row">
-                        <span class="pokemon-stat-name">HP</span>
-                        <strong class="pokemon-stat-value">78</strong>
-                        <div class="pokemon-stat-bar">
-                            <div class="pokemon-stat-bar-fill"></div>
-                        </div>
-                    </div>
-                    <div class="pokemon-stat-row">
-                        <span class="pokemon-stat-name">Attack</span>
-                        <strong class="pokemon-stat-value">84</strong>
-                        <div class="pokemon-stat-bar">
-                            <div class="pokemon-stat-bar-fill"></div>
-                        </div>
-                    </div>
-                    <div class="pokemon-stat-row">
-                        <span class="pokemon-stat-name">Defense</span>
-                        <strong class="pokemon-stat-value">78</strong>
-                        <div class="pokemon-stat-bar">
-                            <div class="pokemon-stat-bar-fill"></div>
-                        </div>
-                    </div>
-                    <div class="pokemon-stat-row">
-                        <span class="pokemon-stat-name">Sp. Atk</span>
-                        <strong class="pokemon-stat-value">109</strong>
-                        <div class="pokemon-stat-bar">
-                            <div class="pokemon-stat-bar-fill"></div>
-                        </div>
-                    </div>
-                    <div class="pokemon-stat-row">
-                        <span class="pokemon-stat-name">Sp. Def</span>
-                        <strong class="pokemon-stat-value">85</strong>
-                        <div class="pokemon-stat-bar">
-                            <div class="pokemon-stat-bar-fill"></div>
-                        </div>
-                    </div>
-                    <div class="pokemon-stat-row">
-                        <span class="pokemon-stat-name">Speed</span>
-                        <strong class="pokemon-stat-value">100</strong>
-                        <div class="pokemon-stat-bar">
-                            <div class="pokemon-stat-bar-fill"></div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <div class="pokemon-dialog-navigation">
-                <button data-id="prev-button" type="button" aria-label="Show previous Pokémon">
-                    <img src="./assets/icons/arrow-left.svg" alt="">
-                </button>
-
-                <button data-id="next-button" type="button" aria-label="Show next Pokémon">
-                    <img src="./assets/icons/arrow-right.svg" alt="">
-                </button>
-            </div>
-        </div>
+        <div class="pokemon-dialog-card" data-id="overlay-pokemon-name"></div>
     </dialog>
     <footer class="main-footer">
         <a class="main-footer-img" href="https://developerakademie.com/" target="_blank" rel="noopener"
