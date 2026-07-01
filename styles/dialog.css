@@ -180,3 +180,39 @@
   outline: 3px solid #ef4444;
   outline-offset: 3px;
 }
+
+.pokemon-stats-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pokemon-stat-row {
+  display: grid;
+  grid-template-columns: 90px 40px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.pokemon-stat-name {
+  color: #666666;
+  font-weight: 500;
+}
+
+.pokemon-stat-value {
+  text-align: right;
+}
+
+.pokemon-stat-bar {
+  height: 8px;
+  border-radius: 999px;
+  background-color: #eeeeee;
+  overflow: hidden;
+}
+
+.pokemon-stat-bar-fill {
+  width: 65%;
+  height: 100%;
+  border-radius: 999px;
+  background-color: #ef4444;
+}
