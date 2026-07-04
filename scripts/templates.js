@@ -143,12 +143,26 @@ function getPokemonCardTemplate(pokemon) {
        <p class="pokemon-card-id">${pokemon.id}</p>
         <h3>${pokemon.name}</h3>
         <div class="pokemon-card-types">
-            <span class="pokemon-type-badge">Fire</span>
-            <span class="pokemon-type-badge">Flying</span>
+            ${getPokemonTypeBadgesTemplate(pokemon.types)}
         </div>
         <div class="pokemon-card-image-wrapper">
              <img class="pokemon-card-image" data-id="card-image" src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
         </div> 
     </button>
     `;
+}
+
+function getPokemonTypeBadgesTemplate(types) {
+    let typeBadges = "";
+
+    for (let index = 0; index < types.length; index++) {
+        const pokemonType = types[index];
+        const typeName = pokemonType.type.name;
+
+        typeBadges += `
+        <span class="pokemon-type-badge">${typeName}</span>
+        `;              
+    }
+
+    return typeBadges;
 }
