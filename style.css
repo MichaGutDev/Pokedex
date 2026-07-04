@@ -8,6 +8,13 @@ body {
   font-weight: 400;
 }
 
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
 
 /* #endregion */
 

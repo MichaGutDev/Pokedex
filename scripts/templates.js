@@ -140,14 +140,14 @@ function getPokemonDialogNavigationTemplate() {
 function getPokemonCardTemplate(pokemon) {
     return /*HTML*/ `
     <button class="pokemon-card" data-id="card" type="button">
-       <p class="pokemon-card-id">${pokemon.id}</p>
+       <p class="pokemon-card-id"># ${pokemon.id}</p>
         <h3>${pokemon.name}</h3>
-        <div class="pokemon-card-types">
-            ${getPokemonTypeBadgesTemplate(pokemon.types)}
-        </div>
         <div class="pokemon-card-image-wrapper">
              <img class="pokemon-card-image" data-id="card-image" src="${pokemon.sprites.other["official-artwork"].front_default}" alt="${pokemon.name}">
         </div> 
+        <div class="pokemon-card-types">
+            ${getPokemonTypeBadgesTemplate(pokemon.types)}
+        </div>
     </button>
     `;
 }
