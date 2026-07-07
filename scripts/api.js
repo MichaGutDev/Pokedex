@@ -3,9 +3,17 @@ let offset = 0;
 const LIMIT = 25;
 
 
+async function fetchPokemonList() {
+    let listResponse = await fetch(BASE_URL + `pokemon?limit=${LIMIT}&offset=${offset}`)
+    let pokemonList = await listResponse.json();
 
-async function fetchPokemonCardData() {
-    let response = await fetch(BASE_URL + `pokemon/charizard`);
+  return pokemonList;
+}
+
+
+
+async function fetchPokemonCardData(BASE_URL) {
+    let response = await fetch(url);
     let pokemon = await response.json();
 
     let pokemonCardData = {

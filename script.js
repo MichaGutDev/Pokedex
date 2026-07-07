@@ -5,9 +5,8 @@ let visiblePokemonCards = [];
 
 async function init() {
   renderPokemonDialog();
-  const pokemon = await fetchPokemonCardData();
-
-  renderPokemonCards(pokemon);
+  const pokemonList = await fetchPokemonList();
+  console.log(pokemonList.results);
 }
 
 init();
