@@ -12,7 +12,7 @@ async function fetchPokemonList() {
 
 
 
-async function fetchPokemonCardData(BASE_URL) {
+async function fetchPokemonCardData(url) {
     let response = await fetch(url);
     let pokemon = await response.json();
 
