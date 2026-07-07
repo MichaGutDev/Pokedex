@@ -1,6 +1,22 @@
-async function fetchCharizard() {
-    let response = await fetch("https://pokeapi.co/api/v2/pokemon/charizard");
-    let test = await response.json();
+const BASE_URL = "https://pokeapi.co/api/v2/";
+let offset = 0;
+const LIMIT = 25;
 
-    return test;
+
+
+async function fetchPokemonCardData() {
+    let response = await fetch(BASE_URL + `pokemon/charizard`);
+    let pokemon = await response.json();
+
+    let pokemonCardData = {
+        id: pokemon.id,
+        name: pokemon.name,
+        image: pokemon.sprites.other["official-artwork"].front_default,
+        types: pokemon.types
+    };
+
+    console.log(pokemonCardData);
+    
+
+    return pokemonCardData;
 }
