@@ -1,11 +1,19 @@
+.pokemon-section {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
 .pokemon-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, 260px);
   gap: 24px;
+  width: 100%;
 }
 
 .pokemon-card {
-  width: 100%;
+  width: 260px;
   min-height: 260px;
   padding: 20px;
   border: none;

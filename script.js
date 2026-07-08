@@ -5,17 +5,33 @@ let visiblePokemonCards = [];
 
 async function init() {
   renderPokemonDialog();
-  const pokemonList = await fetchPokemonList();
-  const cardData = await fetchPokemonCardData(pokemonList.results[0].url)
-
-  renderPokemonCards(cardData);
+  await loadPokemonCards();
 }
 
 init();
 
 
-function renderPokemonCards(pokemon) {
+function renderPokemonCards(pokemonCards) {
   const pokemonGrid = document.getElementById("pokemonGrid");
-  pokemonGrid.innerHTML = getPokemonCardTemplate(pokemon);
+  pokemonGrid.innerHTML = "";
 
+  for (let index = 0; index < pokemonCards.length; index++) {
+    const pokemon = pokemonCards[index];
+    pokemonGrid.innerHTML += getPokemonCardTemplate(pokemon);
+  }
+}
+
+async function loadPokemonCards() {
+  const pokemonList = await fetchPokemonList();
+
+  for (let index = 0; index < pokemonList.results.length; index++) {
+    const cardData = await fetchPokemonCardData(pokemonList.results[index].url);
+    loadedPokemonCards.push(cardData);  
+    
+  }
+
+  visiblePokemonCards = loadedPokemonCards;
+  console.log(visiblePokemonCards);
+  renderPokemonCards(visiblePokemonCards);
+  
 }
