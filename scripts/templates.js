@@ -138,11 +138,13 @@ function getPokemonDialogNavigationTemplate() {
 }
 
 function getPokemonCardTemplate(pokemon) {
+    const primaryType = pokemon.types[0].type.name;
+
     return /*HTML*/ `
     <button class="pokemon-card" data-id="card" type="button">
        <p class="pokemon-card-id"># ${pokemon.id}</p>
         <h3>${pokemon.name}</h3>
-        <div class="pokemon-card-image-wrapper">
+        <div class="pokemon-card-image-wrapper  ${primaryType}">
              <img class="pokemon-card-image" data-id="card-image" src="${pokemon.image}" alt="${pokemon.name}"  loading="lazy"
                 decoding="async">
         </div> 
@@ -161,7 +163,7 @@ function getPokemonTypeBadgesTemplate(types) {
         const typeName = pokemonType.type.name;
 
         typeBadges += `
-        <span class="pokemon-type-badge">${typeName}</span>
+        <span class="pokemon-type-badge ${typeName}">${typeName}</span>
         `;
     }
 
