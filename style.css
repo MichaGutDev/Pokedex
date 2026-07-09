@@ -15,21 +15,20 @@ select {
   font: inherit;
 }
 
-
 /* #endregion */
 
 /* #region layout */
 
 header {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
   padding: 20px var(--content-padding);
   background-color: var(--secandary-color);
 }
 
 header img {
-    height: 36px;
-    width: 36px;
+  height: 36px;
+  width: 36px;
   padding-right: 8px;
 }
 
@@ -40,7 +39,8 @@ main {
   align-items: center;
   justify-content: center;
   padding: 20px var(--content-padding);
-  background-color: white;
+  /* background-color: var(--secandary-color); */
+  color: white;
 }
 
 .loading-overlay {
