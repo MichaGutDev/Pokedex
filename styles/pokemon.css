@@ -72,3 +72,25 @@
   height: auto;
   object-fit: contain;
 }
+
+.load-more-button {
+  display: block;
+  margin: 32px auto 0;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--accent-color);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 125ms ease, opacity 125ms ease;
+}
+
+.load-more-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.load-more-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
