@@ -143,7 +143,8 @@ function getPokemonCardTemplate(pokemon) {
        <p class="pokemon-card-id"># ${pokemon.id}</p>
         <h3>${pokemon.name}</h3>
         <div class="pokemon-card-image-wrapper">
-             <img class="pokemon-card-image" data-id="card-image" src="${pokemon.image}" alt="${pokemon.name}">
+             <img class="pokemon-card-image" data-id="card-image" src="${pokemon.image}" alt="${pokemon.name}"  loading="lazy"
+                decoding="async">
         </div> 
         <div class="pokemon-card-types">
             ${getPokemonTypeBadgesTemplate(pokemon.types)}
@@ -161,7 +162,7 @@ function getPokemonTypeBadgesTemplate(types) {
 
         typeBadges += `
         <span class="pokemon-type-badge">${typeName}</span>
-        `;              
+        `;
     }
 
     return typeBadges;

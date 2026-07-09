@@ -1,6 +1,6 @@
 const BASE_URL = "https://pokeapi.co/api/v2/";
 let offset = 0;
-const LIMIT = 25;
+const LIMIT = 20;
 
 
 async function fetchPokemonList() {

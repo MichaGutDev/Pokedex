@@ -35,3 +35,18 @@ async function loadPokemonCards() {
   renderPokemonCards(visiblePokemonCards);
   
 }
+
+async function loadMorePokemon() {
+  setLoadMoreButtonDisabled(true);
+
+  offset += LIMIT;
+  await loadPokemonCards();
+
+  setLoadMoreButtonDisabled(false);
+}
+
+function setLoadMoreButtonDisabled(isDisabled){
+  const loadMoreBtn = document.querySelector('[data-id="load-more-button"]');
+
+  loadMoreBtn.disabled = isDisabled;
+}
