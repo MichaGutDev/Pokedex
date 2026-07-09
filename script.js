@@ -22,6 +22,8 @@ function renderPokemonCards(pokemonCards) {
 }
 
 async function loadPokemonCards() {
+  setLoadingState(true);
+
   const pokemonList = await fetchPokemonList();
 
   for (let index = 0; index < pokemonList.results.length; index++) {
@@ -31,8 +33,9 @@ async function loadPokemonCards() {
   }
 
   visiblePokemonCards = loadedPokemonCards;
-  console.log(visiblePokemonCards);
   renderPokemonCards(visiblePokemonCards);
+
+  setLoadingState(false)
   
 }
 
@@ -49,4 +52,14 @@ function setLoadMoreButtonDisabled(isDisabled){
   const loadMoreBtn = document.querySelector('[data-id="load-more-button"]');
 
   loadMoreBtn.disabled = isDisabled;
+}
+
+function setLoadingState(isLoading) {
+  const loadingSpinner = document.getElementById("loading-spinner");
+
+  if (isLoading) {
+    loadingSpinner.classList.remove("d-none");
+  } else {
+    loadingSpinner.classList.add("d-none");
+  }
 }
