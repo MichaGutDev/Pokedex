@@ -1,7 +1,7 @@
-function getPokemonDialogTemplate() {
+function getPokemonDialogTemplate(selectedPokemon) {
     return `
         ${getPokemonDialogCloseButtonTemplate()}
-        ${getPokemonDialogHeroTemplate()}
+        ${getPokemonDialogHeroTemplate(selectedPokemon)}
         ${getPokemonDialogTabsTemplate()}
         ${getPokemonDialogDetailsTemplate()}
         ${getPokemonDialogNavigationTemplate()}
@@ -16,16 +16,16 @@ function getPokemonDialogCloseButtonTemplate() {
     `;
 }
 
-function getPokemonDialogHeroTemplate() {
+function getPokemonDialogHeroTemplate(selectedPokemon) {
     return /*HTML*/ `
     <section class="pokemon-dialog-hero">
-        <p class="pokemon-dialog-id">#006</p>
-        <h2>Charizard</h2>
+        <p class="pokemon-dialog-id">#${selectedPokemon.id}</p>
+        <h2>${selectedPokemon.name}</h2>
         <div class="pokemon-dialog-types">
-            <!-- TODO type badges later -->
+            ${getPokemonTypeBadgesTemplate(selectedPokemon.types)}
         </div>
         <div class="pokemon-dialog-image-wrapper">
-             <img class="pokemon-dialog-image" data-id="dialog-image" src="" alt="">
+             <img class="pokemon-dialog-image" data-id="dialog-image" src="${selectedPokemon.image}" alt="${selectedPokemon.name}">
         </div>
     </section>
     `;
