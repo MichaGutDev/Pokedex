@@ -3,3 +3,11 @@ function renderPokemonDialog() {
   dialogCard.innerHTML = getPokemonDialogTemplate();
   
 }
+
+function openPokemonDialog(selectedPokemon) {
+  const dialog = document.querySelector('[data-id="dialog"]');
+
+  console.log(selectedPokemon);
+  dialog.showModal();
+  
+}

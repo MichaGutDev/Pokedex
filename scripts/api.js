@@ -23,7 +23,7 @@ async function fetchPokemonCardData(url) {
         types: pokemon.types
     };
 
-    console.log(pokemonCardData);
+    // console.log(pokemonCardData);
     
 
     return pokemonCardData;

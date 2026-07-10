@@ -5,6 +5,7 @@ let visiblePokemonCards = [];
 
 async function init() {
   renderPokemonDialog();
+  addPokemonCardClickListener();
   await loadPokemonCards();
 }
 
@@ -17,7 +18,7 @@ function renderPokemonCards(pokemonCards) {
 
   for (let index = 0; index < pokemonCards.length; index++) {
     const pokemon = pokemonCards[index];
-    pokemonGrid.innerHTML += getPokemonCardTemplate(pokemon);
+    pokemonGrid.innerHTML += getPokemonCardTemplate(pokemon, index);
   }
 }
 
@@ -62,4 +63,24 @@ function setLoadingState(isLoading) {
   } else {
     loadingSpinner.classList.add("d-none");
   }
+}
+
+function addPokemonCardClickListener() {
+  const pokemonGrid = document.getElementById("pokemonGrid");
+
+  pokemonGrid.addEventListener("click", handlePokemonCardClick);
+}
+
+function handlePokemonCardClick(event) {
+  const pokemonCard = event.target.closest('[data-id="card"]');
+
+  if (pokemonCard === null) {
+    return;
+  }
+
+  const cardIndex = Number(pokemonCard.dataset.index);
+  const selectedPokemon = visiblePokemonCards[cardIndex];
+
+  openPokemonDialog(selectedPokemon);
+  
 }
