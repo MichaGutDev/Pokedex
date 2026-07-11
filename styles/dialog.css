@@ -117,6 +117,7 @@
 
 .pokemon-dialog-tabs button.active {
   color: black;
+  border-bottom: 3px solid #ef4444;
 }
 
 .pokemon-dialog-tabs button.active::after {

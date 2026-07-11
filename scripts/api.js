@@ -7,10 +7,8 @@ async function fetchPokemonList() {
     let listResponse = await fetch(BASE_URL + `pokemon?limit=${LIMIT}&offset=${offset}`)
     let pokemonList = await listResponse.json();
 
-  return pokemonList;
+    return pokemonList;
 }
-
-
 
 async function fetchPokemonCardData(url) {
     let response = await fetch(url);
@@ -24,7 +22,26 @@ async function fetchPokemonCardData(url) {
     };
 
     // console.log(pokemonCardData);
-    
+
 
     return pokemonCardData;
+}
+
+async function fetchPokemonDetails(pokemonId) {
+    let response = await fetch(BASE_URL + `pokemon/${pokemonId}`);
+    let pokemon = await response.json();
+
+    let pokemonDetails = {
+        height: pokemon.height,
+        weight: pokemon.weight,
+        abilities: pokemon.abilities,
+        stats: pokemon.stats,
+       
+    };
+
+    console.log(pokemonDetails);
+    console.log(pokemon.moves[0]);
+
+
+    return pokemonDetails;
 }

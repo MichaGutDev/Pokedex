@@ -1,9 +1,9 @@
-function getPokemonDialogTemplate(selectedPokemon) {
+function getPokemonDialogTemplate(selectedPokemon, pokemonDetails) {
     return `
         ${getPokemonDialogCloseButtonTemplate()}
         ${getPokemonDialogHeroTemplate(selectedPokemon)}
         ${getPokemonDialogTabsTemplate()}
-        ${getPokemonDialogDetailsTemplate()}
+        ${getPokemonDialogDetailsTemplate(selectedPokemon, pokemonDetails)}
         ${getPokemonDialogNavigationTemplate()}
     `;
 }
@@ -17,6 +17,8 @@ function getPokemonDialogCloseButtonTemplate() {
 }
 
 function getPokemonDialogHeroTemplate(selectedPokemon) {
+    const primaryType = selectedPokemon.types[0].type.name;
+
     return /*HTML*/ `
     <section class="pokemon-dialog-hero">
         <p class="pokemon-dialog-id">#${selectedPokemon.id}</p>
@@ -24,7 +26,7 @@ function getPokemonDialogHeroTemplate(selectedPokemon) {
         <div class="pokemon-dialog-types">
             ${getPokemonTypeBadgesTemplate(selectedPokemon.types)}
         </div>
-        <div class="pokemon-dialog-image-wrapper">
+        <div class="pokemon-dialog-image-wrapper ${primaryType}">
              <img class="pokemon-dialog-image" data-id="dialog-image" src="${selectedPokemon.image}" alt="${selectedPokemon.name}">
         </div>
     </section>
@@ -42,34 +44,29 @@ function getPokemonDialogTabsTemplate() {
     `;
 }
 
-function getPokemonDialogDetailsTemplate() {
+function getPokemonDialogDetailsTemplate(selectedPokemon, pokemonDetails) {
     return /*HTML*/ `
     <section class="pokemon-dialog-details">
-        ${getPokemonAboutTemplate()}
+        ${getPokemonAboutTemplate(selectedPokemon, pokemonDetails)}
     </section>
     `;
 }
 
-function getPokemonAboutTemplate() {
+function getPokemonAboutTemplate(selectedPokemon, pokemonDetails) {
     return /*HTML*/ `
     <div class="pokemon-detail-row">
         <span>Height</span>
-        <strong>1.7 m</strong>
+        <strong>${pokemonDetails.height / 10} m</strong>
     </div>
 
     <div class="pokemon-detail-row">
         <span>Weight</span>
-        <strong>90.5 kg</strong>
-    </div>
-
-    <div class="pokemon-detail-row">
-        <span>Types</span>
-        <strong>Fire, Flying</strong>
+        <strong>${pokemonDetails.weight / 10} kg</strong>
     </div>
 
     <div class="pokemon-detail-row">
         <span>Abilities</span>
-        <strong>Blaze</strong>
+        <strong>${getPokemonTypeNames(selectedPokemon.types)}</strong>
     </div>
     `;
 }
