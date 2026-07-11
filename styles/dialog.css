@@ -18,6 +18,10 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+.pokemon-dialog-hero h2 {
+  text-transform: capitalize;
+}
+
 .pokemon-dialog-card {
   position: relative;
   display: flex;
@@ -64,6 +68,12 @@
   outline-offset: 3px;
 }
 
+.pokemon-dialog-id {
+  font-size: 18px;
+  font-weight: 700;
+  opacity: 0.8;
+}
+
 .pokemon-dialog-image-wrapper {
   display: flex;
   justify-content: center;
@@ -71,14 +81,15 @@
   min-height: 180px;
   margin: 24px 0;
 
-  /* border-radius: 24px;
-  background-color: #f3f4f6; */
+  border-radius: 24px;
 }
 
 .pokemon-dialog-image {
   width: 180px;
   height: 180px;
   object-fit: contain;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }
 
 .pokemon-dialog-tabs {
