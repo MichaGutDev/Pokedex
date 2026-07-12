@@ -5,6 +5,7 @@ let visiblePokemonCards = [];
 
 async function init() {
   addPokemonCardClickListener();
+  addPokemonDialogTabClickListener();
   await loadPokemonCards();
 }
 
@@ -20,6 +21,7 @@ function renderPokemonCards(pokemonCards) {
     pokemonGrid.innerHTML += getPokemonCardTemplate(pokemon, index);
   }
 }
+
 
 async function loadPokemonCards() {
   setLoadingState(true);
@@ -39,6 +41,7 @@ async function loadPokemonCards() {
   
 }
 
+
 async function loadMorePokemon() {
   setLoadMoreButtonDisabled(true);
 
@@ -48,11 +51,13 @@ async function loadMorePokemon() {
   setLoadMoreButtonDisabled(false);
 }
 
+
 function setLoadMoreButtonDisabled(isDisabled){
   const loadMoreBtn = document.querySelector('[data-id="load-more-button"]');
 
   loadMoreBtn.disabled = isDisabled;
 }
+
 
 function setLoadingState(isLoading) {
   const loadingSpinner = document.getElementById("loading-spinner");
@@ -64,11 +69,13 @@ function setLoadingState(isLoading) {
   }
 }
 
+
 function addPokemonCardClickListener() {
   const pokemonGrid = document.getElementById("pokemonGrid");
 
   pokemonGrid.addEventListener("click", handlePokemonCardClick);
 }
+
 
 function handlePokemonCardClick(event) {
   const pokemonCard = event.target.closest('[data-id="card"]');

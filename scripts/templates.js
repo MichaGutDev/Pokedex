@@ -16,6 +16,7 @@ function getPokemonDialogCloseButtonTemplate() {
     `;
 }
 
+
 function getPokemonDialogHeroTemplate(selectedPokemon) {
     const primaryType = selectedPokemon.types[0].type.name;
 
@@ -33,24 +34,27 @@ function getPokemonDialogHeroTemplate(selectedPokemon) {
     `;
 }
 
+
 function getPokemonDialogTabsTemplate() {
     return /*HTML*/ `
     <nav class="pokemon-dialog-tabs" aria-label="Pokémon detail sections">
-        <button type="button" data-tab="about">About</button>
+        <button class="active" type="button" data-tab="about">About</button>
         <button type="button" data-tab="stats">Base Stats</button>
         <button type="button" data-tab="abilities">Abilities</button>
-        <button type="button" data-tab="moves">Moves</button>
+        <button type="button" data-tab="evolution">Evolution</button>
     </nav> 
     `;
 }
 
+
 function getPokemonDialogDetailsTemplate(selectedPokemon, pokemonDetails) {
     return /*HTML*/ `
-    <section class="pokemon-dialog-details">
+    <section class="pokemon-dialog-details" id="pokemonDialogDetails">
         ${getPokemonAboutTemplate(selectedPokemon, pokemonDetails)}
     </section>
     `;
 }
+
 
 function getPokemonAboutTemplate(selectedPokemon, pokemonDetails) {
     return /*HTML*/ `
@@ -70,6 +74,7 @@ function getPokemonAboutTemplate(selectedPokemon, pokemonDetails) {
     </div>
     `;
 }
+
 
 function getPokemonStatsTemplate() {
     return /*HTML*/ `
@@ -120,6 +125,7 @@ function getPokemonStatsTemplate() {
     `;
 }
 
+
 function getPokemonDialogNavigationTemplate() {
     return /*HTML*/ `
     <div class="pokemon-dialog-navigation">
@@ -133,6 +139,7 @@ function getPokemonDialogNavigationTemplate() {
     </div>
     `;
 }
+
 
 function getPokemonCardTemplate(pokemon, index) {
     const primaryType = pokemon.types[0].type.name;
@@ -151,6 +158,7 @@ function getPokemonCardTemplate(pokemon, index) {
     </button>
     `;
 }
+
 
 function getPokemonTypeBadgesTemplate(types) {
     let typeBadges = "";
