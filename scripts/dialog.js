@@ -76,7 +76,10 @@ function renderDialogTabContent(selctedTab) {
   } 
 
   else if (selctedTab === "stats") {
-    dialogDetails.innerHTML = getPokemonStatsTemplate();
+    dialogDetails.innerHTML = getPokemonStatsTemplate(currentDialogDetails.stats);
+  }
+  else if (selctedTab === "abilities") {
+    dialogDetails.innerHTML = getPokemonAbilitiesTemplate(currentDialogDetails.abilities);
   }
   
 }

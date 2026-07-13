@@ -159,6 +159,7 @@
 
 .pokemon-dialog-navigation {
   margin-top: auto;
+  padding-top: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -200,7 +201,7 @@
 
 .pokemon-stat-row {
   display: grid;
-  grid-template-columns: 90px 40px 1fr;
+  grid-template-columns: 128px 40px 1fr;
   align-items: center;
   gap: 12px;
 }
@@ -222,8 +223,17 @@
 }
 
 .pokemon-stat-bar-fill {
-  width: 65%;
   height: 100%;
   border-radius: 999px;
   background-color: #ef4444;
+}
+
+.pokemon-abilities-list {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.pokemon-ability {
+  margin-bottom: 8px;
+  text-transform: capitalize;
 }

@@ -76,53 +76,31 @@ function getPokemonAboutTemplate(selectedPokemon, pokemonDetails) {
 }
 
 
-function getPokemonStatsTemplate() {
-    return /*HTML*/ `
-   <div class="pokemon-stats-list">
+function getPokemonStatsTemplate(stats) {
+    let statsTemplate = "";
+
+    for (let index = 0; index < stats.length; index++) {
+        const statName = stats[index].stat.name;
+        const statValue = stats[index].base_stat;
+        const statBarWidth = Math.min(statValue, 100);
+
+        statsTemplate += /*HTML*/ `
         <div class="pokemon-stat-row">
-             <span class="pokemon-stat-name">HP</span>
-            <strong class="pokemon-stat-value">78</strong>
+             <span class="pokemon-stat-name">${statName}</span>
+            <strong class="pokemon-stat-value">${statValue}</strong>
             <div class="pokemon-stat-bar">
-                <div class="pokemon-stat-bar-fill"></div>
+                <div class="pokemon-stat-bar-fill" style="width: ${statBarWidth}%"></div>
             </div>
         </div>
-        <div class="pokemon-stat-row">
-            <span class="pokemon-stat-name">Attack</span>
-            <strong class="pokemon-stat-value">84</strong>
-            <div class="pokemon-stat-bar">
-                <div class="pokemon-stat-bar-fill"></div>
-            </div>
+        `;
+        
+    }
+
+        return /*HTML*/ `
+        <div class="pokemon-stats-list">
+            ${statsTemplate}       
         </div>
-        <div class="pokemon-stat-row">
-            <span class="pokemon-stat-name">Defense</span>
-            <strong class="pokemon-stat-value">78</strong>
-            <div class="pokemon-stat-bar">
-                <div class="pokemon-stat-bar-fill"></div>
-            </div>
-        </div>
-        <div class="pokemon-stat-row">
-             <span class="pokemon-stat-name">Sp. Atk</span>
-            <strong class="pokemon-stat-value">109</strong>
-            <div class="pokemon-stat-bar">
-                <div class="pokemon-stat-bar-fill"></div>
-             </div>
-        </div>
-        <div class="pokemon-stat-row">
-            <span class="pokemon-stat-name">Sp. Def</span>
-             <strong class="pokemon-stat-value">85</strong>
-             <div class="pokemon-stat-bar">
-                <div class="pokemon-stat-bar-fill"></div>
-            </div>
-        </div>
-        <div class="pokemon-stat-row">
-            <span class="pokemon-stat-name">Speed</span>
-            <strong class="pokemon-stat-value">100</strong>
-            <div class="pokemon-stat-bar">
-                <div class="pokemon-stat-bar-fill"></div>
-            </div>
-        </div>
-    </div>
-    `;
+        `;
 }
 
 
@@ -167,10 +145,33 @@ function getPokemonTypeBadgesTemplate(types) {
         const pokemonType = types[index];
         const typeName = pokemonType.type.name;
 
-        typeBadges += `
+        typeBadges += /*HTML*/ `
         <span class="pokemon-type-badge ${typeName}">${typeName}</span>
         `;
     }
 
     return typeBadges;
+}
+
+
+function getPokemonAbilitiesTemplate(abilities) {
+    let abilitiesTemplate = "";
+
+    for (let index = 0; index < abilities.length; index++) {
+        const ability = abilities[index];
+        const abilityName = abilities[index].ability.name;
+
+        abilitiesTemplate += /*HTML*/ `
+        <li class="pokemon-ability">
+            ${abilityName}
+        </li>
+        `;
+
+    }
+
+    return /*HTML*/ `
+        <ul class="pokemon-abilities-list">
+            ${abilitiesTemplate}
+        </ul>
+        `;
 }
