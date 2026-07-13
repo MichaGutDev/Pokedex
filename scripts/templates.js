@@ -175,3 +175,31 @@ function getPokemonAbilitiesTemplate(abilities) {
         </ul>
         `;
 }
+
+
+function getPokemonEvolutionTemplate(evolutionChain) {
+  let evolutionTemplate = "";
+
+  for (let index = 0; index < evolutionChain.length; index++) {
+    const evolution = evolutionChain[index];
+
+    evolutionTemplate += `
+      <div class="pokemon-evolution-item">
+        <img
+          class="pokemon-evolution-image"
+          src="${evolution.image}"
+          alt="${evolution.name}"
+        >
+        <span class="pokemon-evolution-name">
+          ${evolution.name}
+        </span>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="pokemon-evolution-list">
+      ${evolutionTemplate}
+    </div>
+  `;
+}

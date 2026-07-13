@@ -1,5 +1,6 @@
 let currentDialogPokemon;
 let currentDialogDetails;
+let currentEvolutionChain;
 
 
 async function openPokemonDialog(selectedPokemon) {
@@ -10,6 +11,18 @@ async function openPokemonDialog(selectedPokemon) {
   );
   currentDialogPokemon = selectedPokemon;
   currentDialogDetails = await fetchPokemonDetails(selectedPokemon.id);
+
+  const evolutionChainUrl = await fetchEvolutionChainUrl(
+    selectedPokemon.id
+  );
+
+  const evolutionData = await fetchEvolutionChain(
+    evolutionChainUrl
+  );
+
+  currentEvolutionChain = getEvolutionChainData(evolutionData);
+
+  console.log(currentEvolutionChain);
 
   dialogCard.innerHTML = getPokemonDialogTemplate(currentDialogPokemon, currentDialogDetails);
   dialog.showModal();
@@ -28,7 +41,7 @@ function getPokemonTypeNames(types) {
     if (index < types.length - 1) {
       typeNames += ", ";
     }
-    
+
   }
 
   return typeNames;
@@ -52,7 +65,7 @@ function handlePokemonDialogTabClick(event) {
   setActivDialogTab(clickedTab);
   renderDialogTabContent(selctedTab)
   console.log(selctedTab);
-  
+
 }
 
 
@@ -63,23 +76,25 @@ function setActivDialogTab(clickedTab) {
     tabButtons[index].classList.remove("active");
 
     clickedTab.classList.add("active")
-    
+
   }
 }
 
 
-function renderDialogTabContent(selctedTab) {
+function renderDialogTabContent(selectedTab) {
   const dialogDetails = document.getElementById("pokemonDialogDetails");
 
-  if (selctedTab === "about") {
-     dialogDetails.innerHTML = getPokemonAboutTemplate(currentDialogPokemon, currentDialogDetails)
-  } 
+  if (selectedTab === "about") {
+    dialogDetails.innerHTML = getPokemonAboutTemplate(currentDialogPokemon, currentDialogDetails)
+  }
 
-  else if (selctedTab === "stats") {
+  else if (selectedTab === "stats") {
     dialogDetails.innerHTML = getPokemonStatsTemplate(currentDialogDetails.stats);
   }
-  else if (selctedTab === "abilities") {
+  else if (selectedTab === "abilities") {
     dialogDetails.innerHTML = getPokemonAbilitiesTemplate(currentDialogDetails.abilities);
   }
-  
+  else if (selectedTab === "evolution") {dialogDetails.innerHTML = getPokemonEvolutionTemplate(currentEvolutionChain);
+}
+
 }

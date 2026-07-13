@@ -10,9 +10,10 @@ async function fetchPokemonList() {
     return pokemonList;
 }
 
+
 async function fetchPokemonCardData(url) {
-    let response = await fetch(url);
-    let pokemon = await response.json();
+    const response = await fetch(url);
+    const pokemon = await response.json();
 
     let pokemonCardData = {
         id: pokemon.id,
@@ -27,9 +28,10 @@ async function fetchPokemonCardData(url) {
     return pokemonCardData;
 }
 
+
 async function fetchPokemonDetails(pokemonId) {
-    let response = await fetch(BASE_URL + `pokemon/${pokemonId}`);
-    let pokemon = await response.json();
+    const response = await fetch(BASE_URL + `pokemon/${pokemonId}`);
+    const pokemon = await response.json();
 
     let pokemonDetails = {
         height: pokemon.height,
@@ -44,4 +46,48 @@ async function fetchPokemonDetails(pokemonId) {
 
 
     return pokemonDetails;
+}
+
+
+async function fetchEvolutionChainUrl(pokemonId) {
+    const response = await fetch(BASE_URL + `pokemon-species/${pokemonId}`);
+    const pokemonSpecies = await response.json();
+    const evolutionChainUrl = pokemonSpecies.evolution_chain.url;
+
+    return evolutionChainUrl;
+}
+
+
+async function fetchEvolutionChain(evolutionChainUrl) {
+  const response = await fetch(evolutionChainUrl);
+  const evolutionData = await response.json();
+
+  return evolutionData;
+}
+
+
+function getEvolutionChainData(evolutionData) {
+    const evolutionChain = [];
+    let currentEvolution = evolutionData.chain;
+
+
+    while (currentEvolution) {
+        const pokemonId = getPokemonIdFromUrl(currentEvolution.species.url);
+        evolutionChain.push({
+            id: pokemonId,
+            name: currentEvolution.species.name,
+            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`,
+        });
+
+        currentEvolution = currentEvolution.evolves_to[0];
+    }
+
+    return evolutionChain;
+}
+
+
+function getPokemonIdFromUrl(url) {
+  const urlParts = url.split("/");
+
+  return urlParts[urlParts.length - 2];
 }
