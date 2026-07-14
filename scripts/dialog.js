@@ -6,26 +6,24 @@ let currentEvolutionChain;
 async function openPokemonDialog(selectedPokemon) {
   const dialog = document.querySelector('[data-id="dialog"]');
 
-  const dialogCard = document.querySelector(
-    '[data-id="overlay-pokemon-name"]'
-  );
+  const dialogCard = document.querySelector('[data-id="overlay-pokemon-name"]');
+
   currentDialogPokemon = selectedPokemon;
   currentDialogDetails = await fetchPokemonDetails(selectedPokemon.id);
 
-  const evolutionChainUrl = await fetchEvolutionChainUrl(
-    selectedPokemon.id
-  );
-
-  const evolutionData = await fetchEvolutionChain(
-    evolutionChainUrl
-  );
-
-  currentEvolutionChain = getEvolutionChainData(evolutionData);
-
-  console.log(currentEvolutionChain);
+  await loadCurrentEvolutionChain(selectedPokemon.id);
 
   dialogCard.innerHTML = getPokemonDialogTemplate(currentDialogPokemon, currentDialogDetails);
   dialog.showModal();
+
+}
+
+
+async function loadCurrentEvolutionChain(pokemonId) {
+  const evolutionChainUrl = await fetchEvolutionChainUrl(pokemonId);
+  const evolutionData = await fetchEvolutionChain(evolutionChainUrl);
+
+  currentEvolutionChain = getEvolutionChainData(evolutionData);
 
 }
 
@@ -94,7 +92,8 @@ function renderDialogTabContent(selectedTab) {
   else if (selectedTab === "abilities") {
     dialogDetails.innerHTML = getPokemonAbilitiesTemplate(currentDialogDetails.abilities);
   }
-  else if (selectedTab === "evolution") {dialogDetails.innerHTML = getPokemonEvolutionTemplate(currentEvolutionChain);
-}
+  else if (selectedTab === "evolution") {
+    dialogDetails.innerHTML = getPokemonEvolutionTemplate(currentEvolutionChain);
+  }
 
 }
