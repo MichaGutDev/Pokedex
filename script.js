@@ -6,6 +6,7 @@ let visiblePokemonCards = [];
 async function init() {
   addPokemonCardClickListener();
   addPokemonDialogTabClickListener();
+  addPokemonNavigationListener()
   await loadPokemonCards();
 }
 
