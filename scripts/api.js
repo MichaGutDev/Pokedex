@@ -22,9 +22,6 @@ async function fetchPokemonCardData(url) {
         types: pokemon.types
     };
 
-    // console.log(pokemonCardData);
-
-
     return pokemonCardData;
 }
 
@@ -40,10 +37,6 @@ async function fetchPokemonDetails(pokemonId) {
         stats: pokemon.stats,
        
     };
-
-    console.log(pokemonDetails);
-    console.log(pokemon.moves[0]);
-
 
     return pokemonDetails;
 }
