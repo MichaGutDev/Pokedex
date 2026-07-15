@@ -8,6 +8,7 @@ async function init() {
   addPokemonDialogTabClickListener();
   addPokemonDialogListener()
   addPokemonSearchListener()
+  addLoadMoreButtonListener();
   await loadPokemonCards();
 }
 
@@ -188,3 +189,10 @@ function handleEmptySearchInput(event) {
 }
 
 
+function addLoadMoreButtonListener() {
+  const loadMoreButton = document.querySelector(
+    '[data-id="load-more-button"]'
+  );
+
+  loadMoreButton.addEventListener("click", loadMorePokemon);
+}

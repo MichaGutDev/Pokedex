@@ -1,4 +1,5 @@
 .pokemon-section {
+  min-height: max(900px, 140vh);
   width: 100%;
   max-width: 1440px;
   margin: 0 auto;
@@ -11,6 +12,7 @@
   justify-content: center;
   gap: 24px;
   width: 100%;
+  min-height: 360px;
 }
 
 .pokemon-card {
