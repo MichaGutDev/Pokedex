@@ -27,7 +27,7 @@
   display: flex;
   flex-direction: column;
   width: min(400px, 100%);
-  min-height: 600px;
+  height: min(680px, calc(100dvh - 24px));
   padding: 32px;
   background-color: white;
   border-radius: 30px;
@@ -138,9 +138,11 @@
 
 .pokemon-dialog-details {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: 10px;
   margin-top: 16px;
+  overflow: auto;
 }
 
 .pokemon-detail-row {
@@ -278,4 +280,60 @@
   font-weight: 600;
   text-align: center;
   text-transform: capitalize;
+}
+
+
+@media (max-width: 480px) {
+  .pokemon-dialog-card {
+    width: calc(100% - 24px);
+    padding: 20px;
+    border-radius: 20px;
+    overflow-y: auto;
+  }
+
+  .pokemon-dialog-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  width: 100%;
+}
+
+  .pokemon-dialog-tabs button {
+    min-width: 0;
+    padding: 10px 2px;
+    font-size: 14px;
+  }
+
+  .pokemon-detail-row {
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+  }
+
+  .pokemon-stat-row {
+    grid-template-columns: 112px 32px 1fr;
+    gap: 8px;
+  }
+
+  .pokemon-stat-name {
+  font-size: 14px;
+}
+
+  .pokemon-evolution-list {
+    gap: 6px;
+  }
+
+  .pokemon-evolution-image {
+    width: 64px;
+    height: 64px;
+  }
+
+  .pokemon-evolution-item:not(:last-child)::after {
+    top: 24px;
+    right: -10px;
+    font-size: 20px;
+  }
+
+  .pokemon-evolution-name {
+    font-size: 14px;
+  }
 }

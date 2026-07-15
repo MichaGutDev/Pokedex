@@ -8,6 +8,7 @@
 .pokemon-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, 210px);
+  justify-content: center;
   gap: 24px;
   width: 100%;
 }

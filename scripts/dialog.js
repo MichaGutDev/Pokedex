@@ -62,7 +62,6 @@ function handlePokemonDialogTabClick(event) {
   const selctedTab = clickedTab.dataset.tab;
   setActivDialogTab(clickedTab);
   renderDialogTabContent(selctedTab)
-  console.log(selctedTab);
 
 }
 
