@@ -8,6 +8,10 @@ body {
   font-weight: 400;
 }
 
+body:has(dialog[open]) {
+  overflow: hidden;
+}
+
 button,
 input,
 textarea,

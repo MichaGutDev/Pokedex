@@ -107,64 +107,73 @@ function addPokemonDialogListener() {
 
 
 function handlePokemonDialogClick(event) {
-  const previousButton = event.target.closest(`[data-id="prev-button"]`);
-  const nextButton = event.target.closest(`[data-id="next-button"]`);
-  const closeButton = event.target.closest('[data-id="close-dialog-button"]');
-
-  if (previousButton) {
-    previousPokemon();
-  }
-
-  if (nextButton) {
-    nextPokemon();
-  }
-
-  if (closeButton) {
+  if (event.target === event.currentTarget) {
     closePokemonDialog();
+    return;
   }
 
-}
+    const previousButton = event.target.closest(`[data-id="prev-button"]`);
+    const nextButton = event.target.closest(`[data-id="next-button"]`);
+    const closeButton = event.target.closest('[data-id="close-dialog-button"]');
 
+    if (previousButton) {
+      previousPokemon();
+    }
 
-function previousPokemon() {
-  const currentIndex = visiblePokemonCards.findIndex(
-    (pokemon) => pokemon.id === currentDialogPokemon.id
-  );
+    if (nextButton) {
+      nextPokemon();
+    }
 
-  let previousIndex;
+    if (closeButton) {
+      closePokemonDialog();
+    }
 
-  if (currentIndex === 0) {
-    previousIndex = visiblePokemonCards.length - 1;
-  } else {
-    previousIndex = currentIndex - 1
+    if (event.target === event.currentTarget) {
+      closePokemonDialog();
+    }
+
   }
 
-  const previousPokemonData = visiblePokemonCards[previousIndex];
 
-  openPokemonDialog(previousPokemonData);
-}
+  function previousPokemon() {
+    const currentIndex = visiblePokemonCards.findIndex(
+      (pokemon) => pokemon.id === currentDialogPokemon.id
+    );
 
+    let previousIndex;
 
-function nextPokemon() {
-  const currentIndex = visiblePokemonCards.findIndex(
-    (pokemon) => pokemon.id === currentDialogPokemon.id
-  );
+    if (currentIndex === 0) {
+      previousIndex = visiblePokemonCards.length - 1;
+    } else {
+      previousIndex = currentIndex - 1
+    }
 
-  let nextIndex;
+    const previousPokemonData = visiblePokemonCards[previousIndex];
 
-  if (currentIndex === visiblePokemonCards.length - 1) {
-    nextIndex = 0;
-  } else {
-    nextIndex = currentIndex + 1;
+    openPokemonDialog(previousPokemonData);
   }
 
-  const nextPokemonData = visiblePokemonCards[nextIndex];
 
-  openPokemonDialog(nextPokemonData);
-}
+  function nextPokemon() {
+    const currentIndex = visiblePokemonCards.findIndex(
+      (pokemon) => pokemon.id === currentDialogPokemon.id
+    );
+
+    let nextIndex;
+
+    if (currentIndex === visiblePokemonCards.length - 1) {
+      nextIndex = 0;
+    } else {
+      nextIndex = currentIndex + 1;
+    }
+
+    const nextPokemonData = visiblePokemonCards[nextIndex];
+
+    openPokemonDialog(nextPokemonData);
+  }
 
 
-function closePokemonDialog() {
-  const dialog = document.querySelector('[data-id="dialog"]');
-  dialog.close();
-}
+  function closePokemonDialog() {
+    const dialog = document.querySelector('[data-id="dialog"]');
+    dialog.close();
+  }
