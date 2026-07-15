@@ -69,7 +69,7 @@ function getPokemonAboutTemplate(selectedPokemon, pokemonDetails) {
     </div>
 
     <div class="pokemon-detail-row">
-        <span>Abilities</span>
+        <span>Types</span>
         <strong>${getPokemonTypeNames(selectedPokemon.types)}</strong>
     </div>
     `;
@@ -158,7 +158,6 @@ function getPokemonAbilitiesTemplate(abilities) {
     let abilitiesTemplate = "";
 
     for (let index = 0; index < abilities.length; index++) {
-        const ability = abilities[index];
         const abilityName = abilities[index].ability.name;
 
         abilitiesTemplate += /*HTML*/ `

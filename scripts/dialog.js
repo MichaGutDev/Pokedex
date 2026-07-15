@@ -52,6 +52,7 @@ function addPokemonDialogTabClickListener() {
   dialog.addEventListener("click", handlePokemonDialogTabClick);
 }
 
+
 function handlePokemonDialogTabClick(event) {
   const clickedTab = event.target.closest("[data-tab]");
 
@@ -59,42 +60,54 @@ function handlePokemonDialogTabClick(event) {
     return;
   }
 
-  const selctedTab = clickedTab.dataset.tab;
-  setActivDialogTab(clickedTab);
-  renderDialogTabContent(selctedTab)
-
+  const selectedTab = clickedTab.dataset.tab;
+  setActiveDialogTab(clickedTab);
+  renderDialogTabContent(selectedTab)
 }
 
 
-function setActivDialogTab(clickedTab) {
+function setActiveDialogTab(clickedTab) {
   const tabButtons = document.querySelectorAll(".pokemon-dialog-tabs button");
 
   for (let index = 0; index < tabButtons.length; index++) {
     tabButtons[index].classList.remove("active");
-
-    clickedTab.classList.add("active")
-
   }
+
+  clickedTab.classList.add("active")
+
 }
 
 
 function renderDialogTabContent(selectedTab) {
-  const dialogDetails = document.getElementById("pokemonDialogDetails");
+  const dialogDetails = document.getElementById(
+    "pokemonDialogDetails"
+  );
 
+  dialogDetails.innerHTML = getDialogTabTemplate(selectedTab);
+}
+
+
+function getDialogTabTemplate(selectedTab) {
   if (selectedTab === "about") {
-    dialogDetails.innerHTML = getPokemonAboutTemplate(currentDialogPokemon, currentDialogDetails)
+    return getPokemonAboutTemplate(
+      currentDialogPokemon,
+      currentDialogDetails
+    );
   }
 
-  else if (selectedTab === "stats") {
-    dialogDetails.innerHTML = getPokemonStatsTemplate(currentDialogDetails.stats);
-  }
-  else if (selectedTab === "abilities") {
-    dialogDetails.innerHTML = getPokemonAbilitiesTemplate(currentDialogDetails.abilities);
-  }
-  else if (selectedTab === "evolution") {
-    dialogDetails.innerHTML = getPokemonEvolutionTemplate(currentEvolutionChain);
+  if (selectedTab === "stats") {
+    return getPokemonStatsTemplate(currentDialogDetails.stats);
   }
 
+  if (selectedTab === "abilities") {
+    return getPokemonAbilitiesTemplate(
+      currentDialogDetails.abilities
+    );
+  }
+
+  if (selectedTab === "evolution") {
+    return getPokemonEvolutionTemplate(currentEvolutionChain);
+  }
 }
 
 
@@ -111,68 +124,73 @@ function handlePokemonDialogClick(event) {
     return;
   }
 
-    const previousButton = event.target.closest(`[data-id="prev-button"]`);
-    const nextButton = event.target.closest(`[data-id="next-button"]`);
-    const closeButton = event.target.closest('[data-id="close-dialog-button"]');
+  const clickedButton = event.target.closest("button");
 
-    if (previousButton) {
-      previousPokemon();
-    }
-
-    if (nextButton) {
-      nextPokemon();
-    }
-
-    if (closeButton) {
-      closePokemonDialog();
-    }
-
-    if (event.target === event.currentTarget) {
-      closePokemonDialog();
-    }
-
+  if (!clickedButton) {
+    return;
   }
 
+  handlePokemonDialogButton(clickedButton);
+}
 
-  function previousPokemon() {
-    const currentIndex = visiblePokemonCards.findIndex(
-      (pokemon) => pokemon.id === currentDialogPokemon.id
-    );
 
-    let previousIndex;
+function handlePokemonDialogButton(clickedButton) {
+  const buttonId = clickedButton.dataset.id;
 
-    if (currentIndex === 0) {
-      previousIndex = visiblePokemonCards.length - 1;
-    } else {
-      previousIndex = currentIndex - 1
-    }
-
-    const previousPokemonData = visiblePokemonCards[previousIndex];
-
-    openPokemonDialog(previousPokemonData);
+  if (buttonId === "prev-button") {
+    previousPokemon();
   }
 
-
-  function nextPokemon() {
-    const currentIndex = visiblePokemonCards.findIndex(
-      (pokemon) => pokemon.id === currentDialogPokemon.id
-    );
-
-    let nextIndex;
-
-    if (currentIndex === visiblePokemonCards.length - 1) {
-      nextIndex = 0;
-    } else {
-      nextIndex = currentIndex + 1;
-    }
-
-    const nextPokemonData = visiblePokemonCards[nextIndex];
-
-    openPokemonDialog(nextPokemonData);
+  if (buttonId === "next-button") {
+    nextPokemon();
   }
 
-
-  function closePokemonDialog() {
-    const dialog = document.querySelector('[data-id="dialog"]');
-    dialog.close();
+  if (buttonId === "close-dialog-button") {
+    closePokemonDialog();
   }
+}
+
+
+function previousPokemon() {
+  const currentIndex = getCurrentPokemonIndex();
+  let previousIndex;
+
+  if (currentIndex === 0) {
+    previousIndex = visiblePokemonCards.length - 1;
+  } else {
+    previousIndex = currentIndex - 1
+  }
+
+  const previousPokemonData = visiblePokemonCards[previousIndex];
+
+  openPokemonDialog(previousPokemonData);
+}
+
+
+function nextPokemon() {
+  const currentIndex = getCurrentPokemonIndex();
+  let nextIndex;
+
+  if (currentIndex === visiblePokemonCards.length - 1) {
+    nextIndex = 0;
+  } else {
+    nextIndex = currentIndex + 1;
+  }
+
+  const nextPokemonData = visiblePokemonCards[nextIndex];
+
+  openPokemonDialog(nextPokemonData);
+}
+
+
+function getCurrentPokemonIndex() {
+  return visiblePokemonCards.findIndex(
+    (pokemon) => pokemon.id === currentDialogPokemon.id
+  );
+}
+
+
+function closePokemonDialog() {
+  const dialog = document.querySelector('[data-id="dialog"]');
+  dialog.close();
+}

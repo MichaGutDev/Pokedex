@@ -4,8 +4,8 @@ const LIMIT = 20;
 
 
 async function fetchPokemonList() {
-    let listResponse = await fetch(BASE_URL + `pokemon?limit=${LIMIT}&offset=${offset}`)
-    let pokemonList = await listResponse.json();
+    const listResponse = await fetch(BASE_URL + `pokemon?limit=${LIMIT}&offset=${offset}`);
+    const pokemonList = await listResponse.json();
 
     return pokemonList;
 }
@@ -15,7 +15,7 @@ async function fetchPokemonCardData(url) {
     const response = await fetch(url);
     const pokemon = await response.json();
 
-    let pokemonCardData = {
+    const pokemonCardData = {
         id: pokemon.id,
         name: pokemon.name,
         image: pokemon.sprites.other["official-artwork"].front_default,
@@ -30,12 +30,11 @@ async function fetchPokemonDetails(pokemonId) {
     const response = await fetch(BASE_URL + `pokemon/${pokemonId}`);
     const pokemon = await response.json();
 
-    let pokemonDetails = {
+    const pokemonDetails = {
         height: pokemon.height,
         weight: pokemon.weight,
         abilities: pokemon.abilities,
         stats: pokemon.stats,
-       
     };
 
     return pokemonDetails;
@@ -52,10 +51,10 @@ async function fetchEvolutionChainUrl(pokemonId) {
 
 
 async function fetchEvolutionChain(evolutionChainUrl) {
-  const response = await fetch(evolutionChainUrl);
-  const evolutionData = await response.json();
+    const response = await fetch(evolutionChainUrl);
+    const evolutionData = await response.json();
 
-  return evolutionData;
+    return evolutionData;
 }
 
 
@@ -65,12 +64,9 @@ function getEvolutionChainData(evolutionData) {
 
 
     while (currentEvolution) {
-        const pokemonId = getPokemonIdFromUrl(currentEvolution.species.url);
-        evolutionChain.push({
-            id: pokemonId,
-            name: currentEvolution.species.name,
-            image: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`,
-        });
+        evolutionChain.push(
+            getEvolutionPokemonData(currentEvolution)
+        );
 
         currentEvolution = currentEvolution.evolves_to[0];
     }
@@ -79,8 +75,26 @@ function getEvolutionChainData(evolutionData) {
 }
 
 
-function getPokemonIdFromUrl(url) {
-  const urlParts = url.split("/");
+function getEvolutionPokemonData(currentEvolution) {
+  const pokemonId = getPokemonIdFromUrl(
+    currentEvolution.species.url
+  );
 
-  return urlParts[urlParts.length - 2];
+  return {
+    id: pokemonId,
+    name: currentEvolution.species.name,
+    image: getPokemonArtworkUrl(pokemonId),
+  };
+}
+
+
+function getPokemonArtworkUrl(pokemonId) {
+  return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`;
+}
+
+
+function getPokemonIdFromUrl(url) {
+    const urlParts = url.split("/");
+
+    return urlParts[urlParts.length - 2];
 }

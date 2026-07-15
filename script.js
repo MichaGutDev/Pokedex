@@ -29,17 +29,21 @@ async function loadPokemonCards() {
   setLoadingState(true);
 
   const pokemonList = await fetchPokemonList();
-
-  for (let index = 0; index < pokemonList.results.length; index++) {
-    const cardData = await fetchPokemonCardData(pokemonList.results[index].url);
-    loadedPokemonCards.push(cardData);
-
-  }
+  await loadPokemonCardData(pokemonList);
 
   visiblePokemonCards = loadedPokemonCards;
   renderPokemonCards(visiblePokemonCards);
+  setLoadingState(false);
+}
 
-  setLoadingState(false)
+
+async function loadPokemonCardData(pokemonList) {
+  for (let index = 0; index < pokemonList.results.length; index++) {
+    const pokemonUrl = pokemonList.results[index].url;
+    const cardData = await fetchPokemonCardData(pokemonUrl);
+
+    loadedPokemonCards.push(cardData);
+  }
 }
 
 
