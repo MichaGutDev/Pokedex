@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokedex</title>
+    <link rel="stylesheet" href="./styles/standard.css" />
     <link rel="stylesheet" href="./styles/fonts.css" />
     <link rel="stylesheet" href="./styles/variables.css" />
     <link rel="stylesheet" href="./styles/pokemon.css" />
@@ -37,15 +38,9 @@
             <img class="loading-spinner" src="./assets/icons/pokeball.png" alt="Pokéball">
             <p>Loading...</p>
         </div>
-        <!-- TODO: Add Pokémon overview section -->
-        <!-- TODO: Add Pokémon list container -->
-        <!-- TODO: Add loading feedback -->
-        <!-- TODO: Add not-found message with data-id="not-found" -->
-        <!-- TODO: Add load more button with data-id="load-more-button" -->
         <section class="pokemon-section" id="pokemon-section" aria-labelledby="pokemonSectionTitle">
             <h2 id="pokemonSectionTitle">All Pokémon</h2>
             <div class="pokemon-grid" id="pokemonGrid">
-                <!--TODO: Pokémon cards will be rendered here -->
             </div>
             <button class="load-more-button" data-id="load-more-button" type="button" onclick="loadMorePokemon()">
                 Load more
@@ -53,7 +48,6 @@
         </section>
     </main>
     <dialog class="pokemon-dialog" data-id="dialog">
-        <!-- TODO: Remove open attribute after dialog styling -->
         <div class="pokemon-dialog-card" data-id="overlay-pokemon-name"></div>
     </dialog>
     <footer class="main-footer">

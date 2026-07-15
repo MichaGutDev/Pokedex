@@ -39,7 +39,7 @@ function getPokemonDialogTabsTemplate() {
     return /*HTML*/ `
     <nav class="pokemon-dialog-tabs" aria-label="Pokémon detail sections">
         <button class="active" type="button" data-tab="about">About</button>
-        <button type="button" data-tab="stats">Base Stats</button>
+        <button type="button" data-tab="stats">Stats</button>
         <button type="button" data-tab="abilities">Abilities</button>
         <button type="button" data-tab="evolution">Evolution</button>
     </nav> 
@@ -183,7 +183,7 @@ function getPokemonEvolutionTemplate(evolutionChain) {
   for (let index = 0; index < evolutionChain.length; index++) {
     const evolution = evolutionChain[index];
 
-    evolutionTemplate += `
+    evolutionTemplate += /*HTML*/ `
       <div class="pokemon-evolution-item">
         <img
           class="pokemon-evolution-image"
@@ -197,9 +197,18 @@ function getPokemonEvolutionTemplate(evolutionChain) {
     `;
   }
 
-  return `
+  return /*HTML*/ `
     <div class="pokemon-evolution-list">
       ${evolutionTemplate}
     </div>
+  `;
+}
+
+
+function getPokemonNotFoundTemplate() {
+  return /*HTML*/ `
+    <p class="pokemon-not-found" data-id="not-found">
+      No Pokémon found.
+    </p>
   `;
 }

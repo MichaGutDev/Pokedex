@@ -7,6 +7,7 @@ async function init() {
   addPokemonCardClickListener();
   addPokemonDialogTabClickListener();
   addPokemonDialogListener()
+  addPokemonSearchListener()
   await loadPokemonCards();
 }
 
@@ -31,15 +32,14 @@ async function loadPokemonCards() {
 
   for (let index = 0; index < pokemonList.results.length; index++) {
     const cardData = await fetchPokemonCardData(pokemonList.results[index].url);
-    loadedPokemonCards.push(cardData);  
-    
+    loadedPokemonCards.push(cardData);
+
   }
 
   visiblePokemonCards = loadedPokemonCards;
   renderPokemonCards(visiblePokemonCards);
 
   setLoadingState(false)
-  
 }
 
 
@@ -53,7 +53,7 @@ async function loadMorePokemon() {
 }
 
 
-function setLoadMoreButtonDisabled(isDisabled){
+function setLoadMoreButtonDisabled(isDisabled) {
   const loadMoreBtn = document.querySelector('[data-id="load-more-button"]');
 
   loadMoreBtn.disabled = isDisabled;
@@ -89,5 +89,98 @@ function handlePokemonCardClick(event) {
   const selectedPokemon = visiblePokemonCards[cardIndex];
 
   openPokemonDialog(selectedPokemon);
-  
 }
+
+
+function addPokemonSearchListener() {
+  const searchForm = document.querySelector(".search-form");
+  const searchInput = document.querySelector('[data-id="search-input"]');
+
+  searchForm.addEventListener("submit", handlePokemonSearch);
+  searchInput.addEventListener("input", handleEmptySearchInput);
+}
+
+
+function handlePokemonSearch(event) {
+  event.preventDefault();
+
+  const searchTerm = getSearchTerm();
+
+  if (searchTerm === "") {
+    resetPokemonSearch();
+    return;
+  }
+
+  if (searchTerm.length < 3) {
+    return;
+  }
+
+  filterPokemonCards(searchTerm);
+}
+
+
+function getSearchTerm() {
+  const searchInput = document.querySelector(`[data-id="search-input"]`);
+
+  return searchInput.value.trim().toLowerCase();
+}
+
+function filterPokemonCards(searchTerm) {
+  visiblePokemonCards = loadedPokemonCards.filter(
+    (pokemon) => pokemon.name.includes(searchTerm)
+  );
+
+  renderPokemonSearchResult();
+  hideLoadMoreButton();
+}
+
+function renderPokemonSearchResult() {
+  if (visiblePokemonCards.length === 0) {
+    renderPokemonNotFound();
+    return;
+  }
+
+  renderPokemonCards(visiblePokemonCards);
+}
+
+
+function renderPokemonNotFound() {
+  const pokemonGrid = document.getElementById("pokemonGrid");
+  pokemonGrid.innerHTML = getPokemonNotFoundTemplate();
+}
+
+
+function hideLoadMoreButton() {
+  const loadMoreButton = document.querySelector(
+    '[data-id="load-more-button"]'
+  );
+
+  loadMoreButton.classList.add("d-none");
+}
+
+
+function showLoadMoreButton() {
+  const loadMoreButton = document.querySelector(
+    '[data-id="load-more-button"]'
+  );
+
+  loadMoreButton.classList.remove("d-none");
+}
+
+
+function resetPokemonSearch() {
+  visiblePokemonCards = loadedPokemonCards;
+  renderPokemonCards(visiblePokemonCards);
+  showLoadMoreButton();
+}
+
+
+function handleEmptySearchInput(event) {
+  const searchTerm = event.target.value.trim();
+
+  if (searchTerm === "") {
+    resetPokemonSearch();
+  }
+}
+
+

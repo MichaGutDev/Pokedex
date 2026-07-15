@@ -115,3 +115,13 @@
     transform: rotate(360deg);
   }
 }
+
+
+.pokemon-not-found {
+  grid-column: 1 / -1;
+  margin-top: 32px;
+  color: var(--accent-color);
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}
